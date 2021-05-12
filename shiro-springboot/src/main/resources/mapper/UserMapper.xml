@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kuang.mapper.UserMapper">
+
+<!--    <resultMap type="com.kuang.pojo.User" id="UserResultMap">-->
+<!--        <result property="id" column="id" jdbcType="INTEGER"/>-->
+<!--        <result property="username" column="username" jdbcType="VARCHAR"/>-->
+<!--        <result property="password" column="password" jdbcType="VARCHAR"/>-->
+<!--        <result property="perms" column="perms" jdbcType="VARCHAR"/>-->
+<!--    </resultMap>-->
+
+    <select id="queryUserByName" parameterType="string" resultType="com.kuang.pojo.User">
+        select * from kuang_test.user where username=#{username}
+    </select>
+    <sql id="table_field">
+        id
+        , username, password, perms
+    </sql>
+
+</mapper>
