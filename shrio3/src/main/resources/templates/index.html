@@ -1,10 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-index
+    index
+    <hr/>
+    <shiro:guest>
+        欢迎游客访问，<a href="login.html">登录</a>
+    </shiro:guest>
+    <shiro:user>
+        用户[<shiro:principal/>]欢迎您！
+        当前用户为<shiro:hasRole name="admin">超级管理员</shiro:hasRole>
+                <shiro:hasRole name="cmanager">仓管人员</shiro:hasRole>
+                <shiro:hasRole name="xmanager">销售人员</shiro:hasRole>
+                <shiro:hasRole name="kmanager">客服人员</shiro:hasRole>
+                <shiro:hasRole name="zmanager">行政人员</shiro:hasRole>
+    </shiro:user>
+
+    <hr/>
+    仓库管理
+    <ul>
+        <shiro:hasPermission name="sys:c:save"><li><a href="#">入库</a></li></shiro:hasPermission>
+        <shiro:hasPermission name="sys:c:delete"><li><a href="#">出库</a></li></shiro:hasPermission>
+        <shiro:hasPermission name="sys:c:update"><li><a href="#">修改</a></li></shiro:hasPermission>
+        <shiro:hasPermission name="sys:c:find"><li><a href="#">查询</a></li></shiro:hasPermission>
+    </ul>
+
+    订单管理
+    <ul>
+        <shiro:hasPermission name="sys:x:save"><li><a href="#">添加订单</a></li></shiro:hasPermission>
+        <shiro:hasPermission name="sys:x:delete"><li><a href="#">删除订单</a></li></shiro:hasPermission>
+        <shiro:hasPermission name="sys:x:update"><li><a href="#">修改订单</a></li></shiro:hasPermission>
+        <shiro:hasPermission name="sys:x:find"><li><a href="#">查询订单</a></li></shiro:hasPermission>
+    </ul>
+
+    客户管理
+    <ul>
+        <shiro:hasPermission name="sys:k:save"><li><a href="#">添加客户</a></li></shiro:hasPermission>
+        <shiro:hasPermission name="sys:k:delete"><li><a href="#">删除客户</a></li></shiro:hasPermission>
+        <shiro:hasPermission name="sys:k:update"><li><a href="#">修改客户</a></li></shiro:hasPermission>
+        <shiro:hasPermission name="sys:k:find"><li><a href="#">查询客户</a></li></shiro:hasPermission>
+    </ul>
+
+
 </body>
 </html>
